@@ -1,4 +1,4 @@
-// controllers/info-controller.js
+
 const InfoController = (req, res) => {
   return res.json({
     success: true,
@@ -8,4 +8,4 @@ const InfoController = (req, res) => {
   });
 };
 
-export default InfoController; // <- export function directly
+export default InfoController; 

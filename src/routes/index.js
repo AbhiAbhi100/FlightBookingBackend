@@ -1,7 +1,5 @@
 import express from 'express';
-
-
-const v1Routes = require('./v1');
+import v1Routes from './v1/index.js';
 
 const router = express.Router();
 router.use('/v1', v1Routes)

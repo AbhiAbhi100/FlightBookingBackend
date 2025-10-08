@@ -1,1 +1,2 @@
-export const InfoController = require('./info-controller.js');
+import InfoController from './info-controller.js';
+export  default InfoController ;

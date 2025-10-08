@@ -1,8 +1,9 @@
 import express from "express";
+import InfoController from "../../controllers/index.js"
+
+
  const router = express.Router();
 
- router.get('/info', (req,res) => {
-    return res.json({msg : "ok"})
- })
+ router.get('/info', InfoController)
 
  export default router

@@ -2,7 +2,7 @@ import express from 'express';
 
 import  {PORT} from './config/index.js';
 
-import  apiRoutes  from './routes/v1/index.js';
+import  apiRoutes  from './routes/index.js';
 
 
 
