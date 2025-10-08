@@ -1,9 +1,8 @@
-const express = require('express');
-const { InfoController } = require('../../controllers');
+import express from "express";
+ const router = express.Router();
 
-const router = express.Router();
+ router.get('/info', (req,res) => {
+    return res.json({msg : "ok"})
+ })
 
-// Use the method defined inside info-controller.js
-router.get('/info', InfoController);
-
-module.exports = router;
+ export default router

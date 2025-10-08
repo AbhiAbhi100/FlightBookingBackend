@@ -8,4 +8,4 @@ const InfoController = (req, res) => {
   });
 };
 
-module.exports = InfoController; // <- export function directly
+export default InfoController; // <- export function directly

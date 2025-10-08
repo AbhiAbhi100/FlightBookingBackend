@@ -1,3 +1,1 @@
-module.exports = {
-  InfoController: require('./info-controller.js')
-};
+export const InfoController = require('./info-controller.js');
