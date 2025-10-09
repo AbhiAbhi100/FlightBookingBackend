@@ -1,6 +1,7 @@
-
+import pkg from 'http-status-codes';
+const {Statuscode} = pkg;
 const InfoController = (req, res) => {
-  return res.json({
+  return res.status(Statuscode.ok).json({
     success: true,
     message: "API is live",
     error: {},
