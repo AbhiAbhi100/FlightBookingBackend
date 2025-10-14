@@ -7,7 +7,7 @@ export default class Airplane extends Model {
     Airplane.init(
       {
         modelNumber: { type: DataTypes.STRING, allowNull: false },
-        capacity: { type: DataTypes.INTEGER, allowNull: false },
+        capacity: { type: DataTypes.INTEGER, allowNull: false, defaultValue:0 },
       },
       {
         sequelize,
