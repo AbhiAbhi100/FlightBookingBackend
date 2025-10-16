@@ -1,7 +1,7 @@
 import airplaneservice from '../services/airplane-services.js';
 import { StatusCodes } from 'http-status-codes';
-import {error} from '../utils/errors/common/error-response.js';
-import {success} from '../utils/errors/common/success-response.js';
+import {errorsResponse} from '../../utils/common/error-response.js';
+import {success} from '../../utils/common/success-response.js';
 
 
 /**
@@ -26,10 +26,12 @@ async function createAirplane(req, res){
         })
 
     }catch(error){
-        error.error = error;
-        error.message = "Not able to create the airplane";
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-            ...error,
+        console.log(error);
+        errorsResponse.error = error;
+        return res
+        .status(error.statusCode)
+        .json({
+            ...errorsResponse,
         })
     }
 }

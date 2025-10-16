@@ -1,14 +1,15 @@
 import {StatusCodes} from 'http-status-codes';
-import { error } from '../utils/errors/common/error-response.js';
+import { errorsResponse } from '../../utils/common/error-response.js';
+import AppError from '../../utils/error/app-error.js';
 
 function validateAirplane(req, res, next) {
     if(!req.body.modelNumber ) {
-        error.message = "Not able to create an airplane";
-        error.error = {explanation : "Model Number is required"};
+        errorsResponse.message = "Not able to create an airplane";
+        errorsResponse.error =  new AppError(["Model Number is required"],StatusCodes.BAD_REQUEST);
         return res
         .status(StatusCodes.BAD_REQUEST)
         .json({ 
-            ...error
+            ...errorsResponse
               
         });
     }

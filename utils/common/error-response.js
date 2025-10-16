@@ -1,4 +1,4 @@
-const error = {
+const errorsResponse = {
     success : false,
     message : "Something went wrong",
     data : {},
@@ -6,4 +6,4 @@ const error = {
 
 }
 
-export {error};
+export {errorsResponse};
