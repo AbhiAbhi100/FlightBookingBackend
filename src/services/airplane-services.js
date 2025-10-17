@@ -17,8 +17,18 @@ async function createAirplane(data) {
             console.log(explanation)
             throw new Apperror(explanation , StatusCodes.BAD_REQUEST);
         }
-         throw new Apperror("Something went wrong in the airplane service layer", StatusCodes.INTERNAL_SERVER_ERROR);;
+         throw new Apperror("Something went wrong in the airplane service layer", StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
+async function getAirplanes() {
+    try{
+        const airplanes =  await airplaneRepository.getAll();
+        return airplanes
 
-export default { createAirplane };
+    }catch(error){
+         throw new Apperror("Cannot fetch data of all airplanes ", StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+
+}
+
+export default { createAirplane, getAirplanes };

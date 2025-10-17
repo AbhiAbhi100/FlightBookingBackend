@@ -13,8 +13,7 @@ async create(data) {
 
 
     async destroy(data){
-       try{
-const result = await this.model.destroy(
+        const result = await this.model.destroy(
     {
         where :{
             id : data 
@@ -22,49 +21,31 @@ const result = await this.model.destroy(
     }
 );
 return result;
-       }catch(error){
-        logger.error("Something went wrong in crud repo");
-        throw error;
-
-       }
-    }
+}
 
     async get(data){
-       try{
-const result = await this.model.findByPk(data);
-return result;
-       }catch(error){
-        logger.error("Something went wrong in crud repo : get");
-        throw error;
-
-       }
+  const result = await this.model.findByPk(data);
+  return result;
+       
     }
 
     async getAll(){
-       try{
+       
 const result = await this.model.findAll();
 return result;
-       }catch(error){
-        logger.error("Something went wrong in crud repo");
-        throw error;
-
        }
-    }
+    
 
     async update(id, data){// data -> {name : "Ankush"} it's object 
-       try{
+       
 const result = await this.model.update(data, {
     where : {
         id : id
     }
 });
 return result;
-       }catch(error){
-        logger.error("Something went wrong in crud repo");
-        throw error;
-
-       }
-    }
+       
 }
-
+}
+ 
 export default CrudRepository;
