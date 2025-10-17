@@ -4,12 +4,6 @@ import {errorsResponse} from '../../utils/common/error-response.js';
 import {success} from '../../utils/common/success-response.js';
 
 
-/**
- * 
- * POST : /airplanes
- * body : {modelNumber, capacity}
- */
-
 async function createAirplane(req, res){
     try{
         console.log(req.body);
@@ -35,6 +29,11 @@ async function createAirplane(req, res){
         })
     }
 }
+/**
+ * 
+ * POST : /airplanes
+ * body : {modelNumber, capacity}
+ */
 async function getAirplanes(req, res) {
     try{
        const airplanes = await airplaneservice.getAirplanes();
@@ -54,4 +53,28 @@ async function getAirplanes(req, res) {
         })
     }
 }
-export {createAirplane, getAirplanes};
+/**
+ * 
+ * POST : /airplanes/id
+ * body : {modelNumber, capacity}
+ */
+async function getAirplane(req, res) {
+    try{
+       const airplane = await airplaneservice.getAirplane(req.params.id);
+       success.data = airplane;
+       return res 
+        .status(StatusCodes.OK)
+        .json({
+            ...success,
+        })
+
+    }catch(error){
+         errorsResponse.error = error;
+        return res
+        .status(error.statusCode)
+        .json({
+            ...errorsResponse,
+        })
+    }
+}
+export {createAirplane, getAirplanes, getAirplane};

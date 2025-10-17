@@ -1,3 +1,5 @@
+import { StatusCodes } from "http-status-codes";
+import AppError from "../../utils/error/app-error.js";
 import logger from "../config/logger-config.js";
 
 class CrudRepository {
@@ -25,6 +27,9 @@ return result;
 
     async get(data){
   const result = await this.model.findByPk(data);
+  if(!result){
+    throw new AppError(' Not able to find the resource', StatusCodes.NOT_FOUND)
+  }
   return result;
        
     }
@@ -32,6 +37,7 @@ return result;
     async getAll(){
        
 const result = await this.model.findAll();
+ 
 return result;
        }
     
