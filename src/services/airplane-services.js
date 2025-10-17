@@ -33,7 +33,19 @@ async function getAirplanes() {
 async function getAirplane(id) {
     try{
         const airplane =  await airplaneRepository.get(id);
+        return airplane
 
+    }catch(error){
+        if(error.statusCode == StatusCodes.NOT_FOUND){
+            throw new Apperror('The airplane you requested is not presented ', error.statusCode)
+        }
+         throw new Apperror("Cannot fetch data of all airplanes ", StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+
+}
+async function destroyAirplane(id) {
+     try{
+        const airplane =  await airplaneRepository.destroy(id);
         return airplane
 
     }catch(error){
@@ -45,4 +57,4 @@ async function getAirplane(id) {
 
 }
 
-export default { createAirplane, getAirplanes,getAirplane };
+export default { createAirplane, getAirplanes,getAirplane, destroyAirplane };

@@ -22,6 +22,9 @@ async create(data) {
         }
     }
 );
+if(!result){
+    throw new AppError(' Not able to find the resource', StatusCodes.NOT_FOUND)
+}
 return result;
 }
 

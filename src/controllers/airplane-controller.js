@@ -3,7 +3,11 @@ import { StatusCodes } from 'http-status-codes';
 import {errorsResponse} from '../../utils/common/error-response.js';
 import {success} from '../../utils/common/success-response.js';
 
-
+/**
+ * 
+ * POST : /airplanes
+ * body : {modelNumber, capacity}
+ */
 async function createAirplane(req, res){
     try{
         console.log(req.body);
@@ -31,7 +35,7 @@ async function createAirplane(req, res){
 }
 /**
  * 
- * POST : /airplanes
+ * GET : /airplanes
  * body : {modelNumber, capacity}
  */
 async function getAirplanes(req, res) {
@@ -55,7 +59,7 @@ async function getAirplanes(req, res) {
 }
 /**
  * 
- * POST : /airplanes/id
+ * GET : /airplanes/id
  * body : {modelNumber, capacity}
  */
 async function getAirplane(req, res) {
@@ -77,4 +81,28 @@ async function getAirplane(req, res) {
         })
     }
 }
-export {createAirplane, getAirplanes, getAirplane};
+/**
+ * 
+ * POST : /airplanes/id
+ * body : {modelNumber, capacity}
+ */
+async function destroyAirplane(req, res) {
+    try{
+       const airplane = await airplaneservice.destroyAirplane(req.params.id);
+       success.data = airplane;
+       return res 
+        .status(StatusCodes.OK)
+        .json({
+            ...success,
+        })
+
+    }catch(error){
+         errorsResponse.error = error;
+        return res
+        .status(error.statusCode)
+        .json({
+            ...errorsResponse,
+        })
+    }
+}
+export {createAirplane, getAirplanes, getAirplane, destroyAirplane};

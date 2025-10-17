@@ -1,8 +1,6 @@
 import express from 'express';
-import { createAirplane } from '../../controllers/airplane-controller.js';
+import { createAirplane, destroyAirplane,getAirplane,getAirplanes } from '../../controllers/airplane-controller.js';
 import { validateAirplane } from '../../middlewares/airplane-middleware.js';
-import { getAirplanes } from '../../controllers/airplane-controller.js';
-import { getAirplane } from '../../controllers/airplane-controller.js';
 
 const router = express.Router();
 
@@ -10,8 +8,11 @@ const router = express.Router();
     router.post('/', 
     validateAirplane,
     createAirplane);
-
+// Get /api/v1/airplanes
     router.get('/', getAirplanes);
+    // Get /api/v1/airplane/id
     router.get('/:id', getAirplane);
+    // delete /api/v1/airplanes/id
+    router.delete('/:id', destroyAirplane)
 
 export default router;
