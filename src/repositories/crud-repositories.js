@@ -52,6 +52,9 @@ const result = await this.model.update(data, {
         id : id
     }
 });
+if(!result){
+    throw new AppError(' Not able to find the resource', StatusCodes.NOT_FOUND)
+  }
 return result;
        
 }

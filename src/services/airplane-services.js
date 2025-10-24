@@ -56,5 +56,32 @@ async function destroyAirplane(id) {
     }
 
 }
+async function updateAirplane(id , data){
+    try {
+    const [updated] = await airplaneRepository.update(id, data);
 
-export default { createAirplane, getAirplanes,getAirplane, destroyAirplane };
+    if (!updated) {
+      throw new Apperror(
+        "The airplane you requested is not present",
+        StatusCodes.NOT_FOUND
+      );
+    }
+    const updatedAirplane = await airplaneRepository.get(id);
+    return updatedAirplane;
+
+    }catch(error){
+        console.log(error)
+        if(error.statusCode == StatusCodes.NOT_FOUND){
+            throw new Apperror('The airplane you requested is not presented ', error.statusCode)
+        }
+        throw new Apperror('Currently not updated ', StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
+export default { 
+    createAirplane, 
+    getAirplanes,
+    getAirplane, 
+    destroyAirplane,
+    updateAirplane 
+};

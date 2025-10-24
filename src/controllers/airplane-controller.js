@@ -105,4 +105,35 @@ async function destroyAirplane(req, res) {
         })
     }
 }
-export {createAirplane, getAirplanes, getAirplane, destroyAirplane};
+/**
+ * 
+ * PATCH : /airplanes/id
+ * body : {modelNumber, capacity}
+ */
+async function updateAirplane(req, res){
+    try {
+        const id = req.params.id
+        const {modelNumber, capacity } = req.body
+        const [update] = await airplaneservice.updateAirplane(id,{
+            modelNumber,
+            capacity
+        } )
+        success.data = updateAirplane
+        success.message = "Successfully updated the airplane";
+        return res 
+        .status(StatusCodes.OK)
+        .json({
+            ...success,
+        })
+    }catch(error){
+        console.log(req.body)
+         errorsResponse.error = error;
+        return res
+        .status(error.statusCode)
+        .json({
+            ...errorsResponse,
+        })
+    }
+}
+
+export {createAirplane, getAirplanes, getAirplane, destroyAirplane, updateAirplane};

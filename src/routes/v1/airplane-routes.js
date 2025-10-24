@@ -1,5 +1,5 @@
 import express from 'express';
-import { createAirplane, destroyAirplane,getAirplane,getAirplanes } from '../../controllers/airplane-controller.js';
+import { createAirplane, destroyAirplane,getAirplane,getAirplanes,updateAirplane } from '../../controllers/airplane-controller.js';
 import { validateAirplane } from '../../middlewares/airplane-middleware.js';
 
 const router = express.Router();
@@ -14,5 +14,7 @@ const router = express.Router();
     router.get('/:id', getAirplane);
     // delete /api/v1/airplanes/id
     router.delete('/:id', destroyAirplane)
+    // patch /api/v1/airplanes/id
+    router.patch('/:id',updateAirplane)
 
 export default router;
