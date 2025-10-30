@@ -22,7 +22,21 @@ async function createCity(data){
 
 }
 
+async function destroyCity(id) {
+     try{
+        const city =  await CityRepository.destroy(id);
+        return city
+
+    }catch(error){
+        if(error.statusCode == StatusCodes.NOT_FOUND){
+            throw new Apperror('The City you requested is not presented ', error.statusCode)
+        }
+         throw new Apperror("Cannot fetch data of cities ", StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+
+}
+
 
 export default {
-    createCity,
+    createCity, destroyCity
 };

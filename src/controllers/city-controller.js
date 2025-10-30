@@ -2,6 +2,7 @@ import cityservices from '../services/city-services.js';
 import { StatusCodes } from 'http-status-codes';
 import {errorsResponse} from '../../utils/common/error-response.js';
 import {success} from '../../utils/common/success-response.js';
+import cityServices from '../services/city-services.js';
 
 /**
  * 
@@ -33,6 +34,26 @@ async function createCity(req, res){
     }
 }
 
+async function destroyCity(req, res) {
+    try{
+       const city = await cityServices.destroyCity(req.params.id);
+       success.data = city;
+       return res 
+        .status(StatusCodes.OK)
+        .json({
+            ...success,
+        })
+
+    }catch(error){
+         errorsResponse.error = error;
+        return res
+        .status(error.statusCode)
+        .json({
+            ...errorsResponse,
+        })
+    }
+}
+
 export {
-    createCity,
+    createCity, destroyCity
 };

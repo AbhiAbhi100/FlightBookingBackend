@@ -83,7 +83,7 @@ async function getAirplane(req, res) {
 }
 /**
  * 
- * POST : /airplanes/id
+ * delete : /airplanes/id
  * body : {modelNumber, capacity}
  */
 async function destroyAirplane(req, res) {
