@@ -118,7 +118,7 @@ async function updateAirplane(req, res){
             modelNumber,
             capacity
         } )
-        success.data = updateAirplane
+        success.data = update
         success.message = "Successfully updated the airplane";
         return res 
         .status(StatusCodes.OK)
@@ -129,7 +129,7 @@ async function updateAirplane(req, res){
         console.log(req.body)
          errorsResponse.error = error;
         return res
-        .status(error.statusCode)
+        .status(error.statusCode )
         .json({
             ...errorsResponse,
         })

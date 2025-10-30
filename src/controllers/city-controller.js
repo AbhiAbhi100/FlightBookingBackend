@@ -2,7 +2,7 @@ import cityservices from '../services/city-services.js';
 import { StatusCodes } from 'http-status-codes';
 import {errorsResponse} from '../../utils/common/error-response.js';
 import {success} from '../../utils/common/success-response.js';
-import cityServices from '../services/city-services.js';
+
 
 /**
  * 
@@ -36,7 +36,7 @@ async function createCity(req, res){
 
 async function destroyCity(req, res) {
     try{
-       const city = await cityServices.destroyCity(req.params.id);
+       const city = await cityservices.destroyCity(req.params.id);
        success.data = city;
        return res 
         .status(StatusCodes.OK)
@@ -54,6 +54,32 @@ async function destroyCity(req, res) {
     }
 }
 
+async function updateCity(req, res){
+    try {
+        const id = req.params.id
+        const {name } = req.body
+        const update = await cityservices.updateCity(id,{
+            name : name
+        } )
+        success.data = update;
+        success.message = "Successfully updated the city";
+        return res 
+        .status(StatusCodes.OK)
+        .json({
+            ...success,
+        })
+    }catch(error){
+        console.log(req.body)
+         errorsResponse.error = error;
+        return res
+        .status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
+        .json({
+            ...errorsResponse,
+        })
+    }
+}
+
+
 export {
-    createCity, destroyCity
+    createCity, destroyCity, updateCity
 };
