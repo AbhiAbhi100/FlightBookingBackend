@@ -9,10 +9,10 @@ async function createCity(data){
         return City;
     } catch (error) {
         console.log(error)
-        if (error.name == 'SequelizeValidationError') {
+        if (error.name == 'SequelizeValidationError' || error.name == 'SequelizeUniqueConstraintError') {
             let explanation = [];
             error.errors.forEach((err) => {
-                explanation.push(err.message);
+                explanation.push( err.message);
             });
             console.log(explanation)
             throw new Apperror(explanation , StatusCodes.BAD_REQUEST);
