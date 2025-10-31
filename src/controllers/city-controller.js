@@ -33,7 +33,11 @@ async function createCity(req, res){
         })
     }
 }
-
+/**
+ * 
+ * delete : /cities
+ * body : {name : string}
+ */
 async function destroyCity(req, res) {
     try{
        const city = await cityservices.destroyCity(req.params.id);
@@ -53,15 +57,18 @@ async function destroyCity(req, res) {
         })
     }
 }
-
+/**
+ * 
+ * PATCH : /cities
+ * body : {name : string}
+ */
 async function updateCity(req, res){
     try {
         const id = req.params.id
         const {name } = req.body
-        const update = await cityservices.updateCity(id,{
-            name : name
-        } )
-        success.data = update;
+        success.data = await cityservices.updateCity(id, {
+            name: name
+        });
         success.message = "Successfully updated the city";
         return res 
         .status(StatusCodes.OK)
