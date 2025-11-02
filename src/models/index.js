@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import Airplane from './airplane.js';
 import City from './city.js';
+import Airport from './airport.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -27,6 +28,9 @@ if (config.use_env_variable) {
 const db = {};
 db.Airplane = Airplane.initModel(sequelize);
 db.City = City.initModel(sequelize);
+db.Airport = Airport.initModel(sequelize);
+
+
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

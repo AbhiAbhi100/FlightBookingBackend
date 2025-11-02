@@ -1,21 +1,22 @@
 'use strict';
-import { Model } from 'sequelize';
-export default (sequelize, DataTypes) => {
-  class Airport extends Model {
+import { Model, DataTypes } from 'sequelize';
+
+export default class Airport extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      // define association here
-      this.belongsTo(models.City, {
-        foreignKey : 'cityId',
-        onDelete : 'CASCADE',
-        onUpdate : 'CASCADE'
-      })
-    }
+  static associate(models) {
+    // define association here
+    this.belongsTo(models.City, {
+      foreignKey : 'cityId',
+      onDelete : 'CASCADE',
+      onUpdate : 'CASCADE'
+    })
   }
+
+  static initModel(sequelize){
   Airport.init({
     name: {
       type:DataTypes.STRING,
@@ -37,4 +38,5 @@ export default (sequelize, DataTypes) => {
     modelName: 'Airport',
   });
   return Airport;
-};
+} 
+}
