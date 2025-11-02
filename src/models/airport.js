@@ -13,7 +13,15 @@ export default class Airport extends Model {
       foreignKey : 'cityId',
       onDelete : 'CASCADE',
       onUpdate : 'CASCADE'
-    })
+    });
+    this.hasMany(models.Flight, {
+      foreignKey : 'departureAirportId',
+      onDelete : 'CASCADE',
+      onUpdate : 'CASCADE'})
+    this.hasMany(models.Flight, {
+      foreignKey : 'arrivalAirportId',
+      onDelete : 'CASCADE',
+      onUpdate : 'CASCADE'})
   }
 
   static initModel(sequelize){
