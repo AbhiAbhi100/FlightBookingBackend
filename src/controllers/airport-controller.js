@@ -91,36 +91,35 @@ async function destroyAirport(req, res) {
     }
 }
 
-// async function updateAirport(req, res){
-//     try {
-//         const id = req.params.id
-//         const {modelNumber, capacity } = req.body
-//         const [update] = await airportservice.updateAirport(id,{
-//             modelNumber,
-//             capacity
-//         } )
-//         success.data = update
-//         success.message = "Successfully updated the airplane";
-//         return res 
-//         .status(StatusCodes.OK)
-//         .json({
-//             ...success,
-//         })
-//     }catch(error){
-//         console.log(req.body)
-//          errorsResponse.error = error;
-//         return res
-//         .status(error.statusCode )
-//         .json({
-//             ...errorsResponse,
-//         })
-//     }
-// }
+async function updateAirport(req, res){
+    try {
+        const id = req.params.id
+        const {name, cityId } = req.body
+        const [update] = await airportservice.updateAirport(id,{
+            name, cityId
+        } )
+        success.data = update
+        success.message = "Successfully updated the airport";
+        return res 
+        .status(StatusCodes.OK)
+        .json({
+            ...success,
+        })
+    }catch(error){
+        console.log(req.body)
+         errorsResponse.error = error;
+        return res
+        .status(error.statusCode )
+        .json({
+            ...errorsResponse,
+        })
+    }
+}
 
 export {
     createAirport,
     getAirports,
     getAirport,
     destroyAirport,
-    // updateAirport
+    updateAirport
 };

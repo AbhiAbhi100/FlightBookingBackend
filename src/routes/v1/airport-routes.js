@@ -1,5 +1,5 @@
 import express from 'express';
-import { createAirport, getAirports, getAirport, destroyAirport } from '../../controllers/airport-controller.js';
+import { createAirport, getAirports, getAirport, destroyAirport, updateAirport } from '../../controllers/airport-controller.js';
 import { validateAirports } from '../../middlewares/airport-middleware.js';
 
 const router = express.Router();
@@ -14,6 +14,10 @@ const router = express.Router();
     router.get('/:id', getAirport);
     // delete /api/v1/airplanes/id
     router.delete('/:id', destroyAirport)
+    // update /api/v1/airplanes/id
+    router.patch('/:id', 
+    validateAirports,
+    updateAirport)
    
 
 export default router;
