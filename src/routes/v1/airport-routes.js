@@ -8,13 +8,13 @@ const router = express.Router();
     router.post('/', 
     validateAirports,
     createAirport);
-// Get /api/v1/airplanes
+// Get /api/v1/airplorts
     router.get('/', getAirports);
-    // Get /api/v1/airplane/id
+    // Get /api/v1/airplorts/id
     router.get('/:id', getAirport);
-    // delete /api/v1/airplanes/id
+    // delete /api/v1/airports/id
     router.delete('/:id', destroyAirport)
-    // update /api/v1/airplanes/id
+    // update /api/v1/airports/id
     router.patch('/:id', 
     validateAirports,
     updateAirport)

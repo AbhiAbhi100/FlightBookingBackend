@@ -24,21 +24,21 @@ export async function up(queryInterface, Sequelize) {
       onUpdate: 'CASCADE'
     },
     departureAirportId: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
       allowNull: false,
       references: {
         model: 'Airports',
-        key: 'id'
+        key: 'code'
       },
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE'
     },
     arrivalAirportId: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
       allowNull: false,
       references: {
         model: 'Airports',
-        key: 'id'
+        key: 'code'
       },
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE'

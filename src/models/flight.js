@@ -1,7 +1,7 @@
 'use strict';
-import { Model } from 'sequelize';
-export default (sequelize, DataTypes) => {
-  class Flight extends Model {
+import { Model,DataTypes} from 'sequelize';
+
+ export default class Flight extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,7 +13,7 @@ export default (sequelize, DataTypes) => {
       this.belongsTo(models.Airport, {foreignKey : 'departureAirportId'});
       this.belongsTo(models.Airport, {foreignKey : 'arrivalAirportId'});
     }
-  }
+  static initModel(sequelize) {
   Flight.init({
     flightNumber: {type : DataTypes.STRING,
       allowNull : false,
@@ -37,12 +37,11 @@ export default (sequelize, DataTypes) => {
       allowNull : false,
     },
     boardingGate: {type : DataTypes.STRING,},
-    totalSeats: { type:DataTypes.INTEGER,
-      
-    }
+    totalSeats: { type:DataTypes.INTEGER,}
   }, {
     sequelize,
     modelName: 'Flight',
   });
   return Flight;
-};
+}
+ }
