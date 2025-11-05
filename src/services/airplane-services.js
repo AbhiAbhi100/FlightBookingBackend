@@ -52,7 +52,7 @@ async function destroyAirplane(id) {
         if(error.statusCode == StatusCodes.NOT_FOUND){
             throw new Apperror('The airplane you requested is not presented ', error.statusCode)
         }
-         throw new Apperror("Cannot fetch data of all airplanes ", StatusCodes.INTERNAL_SERVER_ERROR);
+         throw new Apperror("Cannot destroy airplanes ", StatusCodes.INTERNAL_SERVER_ERROR);
     }
 
 }
