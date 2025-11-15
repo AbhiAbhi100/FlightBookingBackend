@@ -3,6 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import {errorsResponse} from '../../utils/common/error-response.js';
 import {success} from '../../utils/common/success-response.js';
 
+
 /**
  * 
  * POST : /flight
@@ -49,6 +50,44 @@ async function createflight(req, res){
         })
     }
 }
+async function isArrivalAfterDeparture(arrivalTime, departureTime){
+    try{
+        const result = await flightservice.isArrivalAfterDeparture(arrivalTime, departureTime);
+        success.data = {isArrivalAfterDeparture : result};
+        success.message = "Successfully compared arrival and departure times";
+        return res
+        .status(StatusCodes.OK)
+        .json({
+            ...success,
+        })
+    }catch(error){
+        console.log(error);
+        errorsResponse.error = error;
+        return res
+        .status(error.statusCodes)
+        .json({
+            ...errorsResponse,
+        })
+    }
+}
+async function getAllFlights(req,res){
+    try {
+        const flights = await flightservice.getAllFlights(req.query);
+        success.data = flights;
+        return res
+             .status(StatusCodes.CREATED)
+             .json(success)
+    } catch (error) {
+        console.error("Error fetching flights:", error);
+        errorsResponse.message = "Failed to fetch flights";
+        errorsResponse.error = error;
+        return res
+            .status(error.statusCode)
+            .json({
+            ...errorsResponse})
+    }
+}
 
 
-export {createflight, };
+
+export {createflight,getAllFlights };
