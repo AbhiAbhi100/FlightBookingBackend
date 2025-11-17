@@ -16,10 +16,12 @@ export default class Airport extends Model {
     });
     this.hasMany(models.Flight, {
       foreignKey : 'departureAirportId',
+      sourceKey: 'code',
       onDelete : 'CASCADE',
       onUpdate : 'CASCADE'})
     this.hasMany(models.Flight, {
       foreignKey : 'arrivalAirportId',
+      sourceKey: 'code',
       onDelete : 'CASCADE',
       onUpdate : 'CASCADE'})
   }

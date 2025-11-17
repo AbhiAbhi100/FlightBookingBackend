@@ -9,9 +9,9 @@ import { Model,DataTypes} from 'sequelize';
      */
     static associate(models) {
       // define association here
-      this,beliongsTo(models.Airplane, {foreignKey : 'airplaneId'});
-      this.belongsTo(models.Airport, {foreignKey : 'departureAirportId'});
-      this.belongsTo(models.Airport, {foreignKey : 'arrivalAirportId'});
+      this.belongsTo(models.Airplane, {foreignKey : 'airplaneId', as: "airplane"});
+      this.belongsTo(models.Airport, {foreignKey : 'departureAirportId', targetKey: 'code', as: "departureAirport"});
+      this.belongsTo(models.Airport, {foreignKey : 'arrivalAirportId', targetKey: 'code', as: "arrivalAirport"});
     }
   static initModel(sequelize) {
   Flight.init({

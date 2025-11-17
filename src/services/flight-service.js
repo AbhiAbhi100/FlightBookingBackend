@@ -72,6 +72,8 @@ if(query.sort){
         const flights = await FlightRepository.getAllFlights(customfilter);
         return flights;
     } catch (error) {
+        console.log(error);
+        
         throw new Apperror(
             "Cannot fetch data of all flights",
             StatusCodes.INTERNAL_SERVER_ERROR

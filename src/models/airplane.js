@@ -3,8 +3,12 @@
 import { Model, DataTypes } from 'sequelize';
 
 export default class Airplane extends Model {
-static associations(models) {
+static associate(models) {
     this.hasMany(models.Flight, {
+      foreignKey: 'airplaneId',
+      onDelete : 'CASCADE'
+    });
+     this.hasMany(models.Seat, {
       foreignKey: 'airplaneId',
       onDelete : 'CASCADE'
     });

@@ -7,6 +7,7 @@ import Airplane from './airplane.js';
 import City from './city.js';
 import Airport from './airport.js';
 import Flight from './flight.js';
+import Seat from './seat.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -31,10 +32,16 @@ db.Airplane = Airplane.initModel(sequelize);
 db.City = City.initModel(sequelize);
 db.Airport = Airport.initModel(sequelize);
 db.Flight = Flight.initModel(sequelize);
+db.Seat = Seat.initModel(sequelize);
 
+//  call associations
+db.Airplane.associate(db);
+db.Airport.associate(db);
+db.City.associate(db);
+db.Flight.associate(db);
+db.Seat.associate(db);
 
-
-db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 db.Sequelize = Sequelize;
 
 export default db;

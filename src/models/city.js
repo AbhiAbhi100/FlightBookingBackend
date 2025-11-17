@@ -3,7 +3,7 @@
 import { Model, DataTypes } from 'sequelize';
 
 export default class City extends Model {
-  static associations(models) {
+  static associate(models) {
     this.hasMany(models.Airport, {
       foreignKey: 'cityId'
     });
