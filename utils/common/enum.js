@@ -5,4 +5,10 @@ const SEAT_TYPE = {
     FIRST_CLASS : 'first_class'
 }
 
-export {SEAT_TYPE}
+const BOOKING_Status = {
+    BOOKED : 'booked',
+    CANCELLED : 'cancelled',
+    INITIATED : 'intiated',
+    PENDING : 'pending',
+}
+export {SEAT_TYPE, BOOKING_Status}
