@@ -80,11 +80,33 @@ if(query.sort){
         );
     }
 }
+ async function getFlight(id){
+     try{
+        const Flight =  await FlightRepository.get(id);
+        return Flight
 
+    }catch(error){
+        if(error.statusCode == StatusCodes.NOT_FOUND){
+            throw new Apperror('The Flight you requested is not presented ', error.statusCode)
+        }
+         throw new Apperror("Cannot fetch data of Flight ", StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+ }
+ async function updateSeats(data){
+   try{
+    const response = await FlightRepository.updateRemainingSeats(data.flightId, data.seats, data.dec)
+    return response;
+   }catch(error){
+    console.log(error);
+    throw new Apperror('Cannnot update the seats', StatusCodes.INTERNAL_SERVER_ERROR);
+   }
+ }
 
 export default { 
     createFlight, 
     isArrivalAfterDeparture,
     getAllFlights,
+    getFlight,
+    updateSeats
     
 };

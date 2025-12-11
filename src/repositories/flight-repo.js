@@ -1,6 +1,8 @@
 import { Sequelize } from 'sequelize';
 import db from '../models/index.js';
 import CrudRepository from './crud-repositories.js';
+import { addRawLockFlights } from './queries.js';
+
 
 class FlightRepository extends CrudRepository {
   constructor() {
@@ -36,6 +38,18 @@ class FlightRepository extends CrudRepository {
       ]
     });
     return response;
+  }
+
+  async updateRemainingSeats(flightId, seats, dec = true){
+    await db.Flight.sequelize.query(addRawLockFlights(flightId));
+    const flight = await db.Flight.findByPk(flightId);
+    if (dec){
+      await db.Flight.decrement('totalSeats', {by : seats, where : {id : flightId}});
+    } else{
+      console.log('dec value:', dec, 'type:', typeof dec, 'parsed:', parseInt(dec));
+     await db.Flight.increment('totalSeats', {by : seats, where : {id : flightId}});
+    }
+    return flight;
   }
 }
 
