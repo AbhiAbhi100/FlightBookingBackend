@@ -15,7 +15,7 @@ const router = express.Router();
     // Get /api/v1/flight/ :id
     router.get('/:id',getFlight);
 
-    // PATCH /api/vi/flight/:id/seats
+    // PATCH /api/v1/flight/:id/seats
     router.patch('/:id/seats', 
         validateUpdateSeats,
         updateSeat

@@ -113,10 +113,11 @@ async function getFlight(req, res) {
 }
  
 async function updateSeat(req, res){
+    console.log('updateSeat HIT');
    try {
     const response = await flightservice.updateSeats({
         flightId : req.params.id,
-        seats: req.body.seats,
+        seats: req.body.noOfSeats,
         dec : req.body.dec
     });
     success.data = response;

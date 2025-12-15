@@ -86,9 +86,10 @@ function validateFlight(req, res, next) {
 }
 // validation for updating seats
 function validateUpdateSeats(req, res, next){
-    if(!req.body.seats ) {
+     console.log('validateUpdateSeats HIT', req.body);
+    if(!req.body.noOfSeats ) {
         errorsResponse.message = "Not able to update a seat";
-        errorsResponse.error =  new AppError(["seats is required"],StatusCodes.BAD_REQUEST);
+        errorsResponse.error =  new AppError(["seats are required"],StatusCodes.BAD_REQUEST);
         return res
         .status(StatusCodes.BAD_REQUEST)
         .json({ 
