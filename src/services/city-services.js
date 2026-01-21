@@ -57,8 +57,21 @@ async function updateCity(id , data){
         throw new Apperror('Currently not updated ', StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
+async function getCity(data){
+    try{
+        const city = await CityRepository.getAll(data);
+        return city;
+    }catch(error){
+        console.log(error)
+        if(error.statusCode == StatusCodes.NOT_FOUND){
+            throw new Apperror('The city you requested is not presented ', error.statusCode)
+        }
+    }
+    }
+
+
 
 
 export default {
-    createCity, destroyCity, updateCity
+    createCity, destroyCity, updateCity,getCity
 };

@@ -85,8 +85,27 @@ async function updateCity(req, res){
         })
     }
 }
-
+async function getCity(req, res){
+    try{
+        const city = await cityservices.getCity(req.params.id);
+        success.data = city;
+        success.message = "Successfully get the city";
+        return res
+        .status(StatusCodes.OK)
+        .json({
+            ...success
+        })
+    }catch(error){
+        console.log(req.body)
+         errorsResponse.error = error;
+        return res
+        .status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
+        .json({
+            ...errorsResponse,
+        })
+    }
+    }
 
 export {
-    createCity, destroyCity, updateCity
+    createCity, destroyCity, updateCity, getCity
 };
